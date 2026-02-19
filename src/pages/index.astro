@@ -196,6 +196,14 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				text-align: left;
 			}
 
+			.timeline-item[data-side="left"] .card-title {
+				justify-content: flex-end;
+			}
+
+			.timeline-item[data-side="left"]:hover .card-title {
+				justify-content: flex-start;
+			}
+
 			.timeline-item[data-side="right"] .timeline-card {
 				grid-column: 3;
 				grid-row: 1;
@@ -357,6 +365,11 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				.timeline-item[data-side="right"] .timeline-card {
 					grid-column: unset;
 					text-align: left;
+				}
+
+				.timeline-item[data-side="left"] .card-title,
+				.timeline-item[data-side="left"]:hover .card-title {
+					justify-content: flex-start;
 				}
 			}
 
