@@ -80,7 +80,7 @@ export const projects: Project[] = [
     date: "2017",
     image: "/images/exchange-2.svg",
     repo: "https://github.com/oscarychen/ArduinoWaterChanger",
-    url: "https://oscarchen.ca/blog/arduino-aquarium-water-changer",
+    url: "/blog/arduino_aquarium_water_changer",
     tags: ["Arduino", "Automation"],
   },
 ];
