@@ -1,6 +1,6 @@
 ---
 title: "Efficient hybrid search on vector database using AlloyDB inline filtering"
-description: ""
+description: "Experimenting with Scalable Nearest Neighbour (ScaNN) index for hybrid query on embedding vector with metadata columns"
 pubDate: "Aug 7 2025"
 ---
 

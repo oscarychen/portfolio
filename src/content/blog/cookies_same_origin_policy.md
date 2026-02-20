@@ -1,6 +1,6 @@
 ---
 title: "Web security: Cookies and Same origin policy"
-description: "Exxamining how cookies and same origin policy are parts of different security models"
+description: "Examining how cookies and same origin policy are parts of different security models"
 pubDate: "Dec 9 2021"
 ---
 

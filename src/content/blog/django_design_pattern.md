@@ -1,6 +1,6 @@
 ---
 title: "Django design pattern"
-description: ""
+description: "Building Django project like a Java developer: design pattern for complex web projects"
 pubDate: "Feb 13 2025"
 ---
 

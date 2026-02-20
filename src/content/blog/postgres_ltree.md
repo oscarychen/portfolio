@@ -1,6 +1,6 @@
 ---
 title: "Postgres ltree"
-description: ""
+description: "Postgres extension for querying tree data efficiently"
 pubDate: "Mar 10 2023"
 ---
 

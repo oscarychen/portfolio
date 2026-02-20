@@ -1,6 +1,6 @@
 ---
 title: "Web security: Content security policy"
-description: ""
+description: "Some notes on a security policy that is a pain in the butt to set up for SPA that will fail you security audit without"
 pubDate: "Dec 9 2021"
 ---
 
