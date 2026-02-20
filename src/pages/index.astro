@@ -43,8 +43,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 			}
 
 			.hero-image img {
-				width: 140px;
-				height: 140px;
+				width: 180px;
+				height: 180px;
 				object-fit: cover;
 				border-radius: 50%;
 				background: none;
@@ -59,15 +59,15 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				}
 
 				.hero-image img {
-					width: 120px;
-					height: 120px;
+					width: 150px;
+					height: 150px;
 				}
 			}
 
 			@media (max-width: 360px) {
 				.hero-image img {
-					width: 100px;
-					height: 100px;
+					width: 130px;
+					height: 130px;
 					border-radius: 50%
 				}
 			}
@@ -235,16 +235,6 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 
 			.timeline-item:hover .card-title {
 				opacity: 1;
-			}
-
-			.card-title a {
-				color: rgb(var(--text));
-				text-decoration: none;
-			}
-
-			.card-title a:hover {
-				color: var(--accent);
-				text-decoration: underline;
 			}
 
 			.card-details {
@@ -428,13 +418,7 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 										</div>
 										<article class="timeline-card">
 											<h3 class="card-title">
-												{project.url ? (
-													<a href={project.url} target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
-														{project.name}
-													</a>
-												) : (
-													project.name
-												)}
+												{project.name}
 												<span class="card-date">[{project.date}]</span>
 											</h3>
 											<div class="card-details">
