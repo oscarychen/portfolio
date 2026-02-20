@@ -23,7 +23,7 @@ export const projects: Project[] = [
     date: "Dec 2023",
     image: "/images/arrows-exchange-2.svg",
     repo: "https://github.com/oscarychen/django-ninja-simple-jwt",
-    tags: ["JWT authentication"],
+    tags: ["JWT", "auth"],
   },
   {
     name: "Cocatus Autocoder",
@@ -49,6 +49,23 @@ export const projects: Project[] = [
     image: "/images/server.svg",
     repo: "https://github.com/oscarychen/eau-de-go",
     tags: ["Web"],
+  },
+  {
+    name: "Visualizing breast cancer treatment pathway",
+    description: "An interactive map built in React",
+    date: "2021",
+    image: "/images/exchange.svg",
+    repo: "https://github.com/oscarychen/ruby-pathway",
+    url: "https://pathway.rubytracker.ca",
+    tags: ["React", "Visualization"],
+  },
+  {
+    name: "Cancer research tracking system",
+    description: "A research admin portal for tracking participation in cancer research studies",
+    date: "2020-2021",
+    image: "/images/exchange.svg",
+    url: "https://www.rubytracker.ca/data-explorer",
+    tags: ["Web", "Admin portal"],
   },
   {
     name: "emr-pipeline-nlp",
