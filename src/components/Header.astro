@@ -10,6 +10,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
 		<div class="social-links">
 			<a href="https://mastodon.social/@oscarchen" target="_blank">
@@ -91,6 +92,23 @@ import HeaderLink from './HeaderLink.astro';
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
+		}
+		header {
+			padding: 0 1em;
+		}
+		nav a {
+			padding: 1em 0.35em;
+		}
+		.internal-links a {
+			font-size: 0.7em;
+		}
+	}
+	@media (max-width: 380px) {
+		nav a {
+			padding: 1em 0.2em;
+		}
+		.internal-links a {
+			font-size: 0.65em;
 		}
 	}
 </style>

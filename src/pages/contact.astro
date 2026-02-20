@@ -1,0 +1,310 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Contact | ${SITE_TITLE}`} description="Get in touch with Oscar — request a resume or reach out for opportunities." />
+		<style>
+			.contact-section {
+				max-width: 540px;
+				margin: 0 auto;
+			}
+
+			.contact-section h1 {
+				margin-bottom: 0.25em;
+			}
+
+			.contact-section .subtitle {
+				color: rgb(var(--text-muted));
+				font-size: 1em;
+				margin-bottom: 2.5em;
+			}
+
+			.form-group {
+				margin-bottom: 1.5em;
+			}
+
+			.form-group label {
+				display: block;
+				font-size: 0.85em;
+				font-weight: 500;
+				color: rgb(var(--text));
+				margin-bottom: 0.4em;
+			}
+
+			.form-group input,
+			.form-group textarea {
+				width: 100%;
+				padding: 0.65em 0.85em;
+				font-size: 1rem;
+				font-family: inherit;
+				color: rgb(var(--text));
+				background: var(--bg-elevated);
+				border: 1px solid rgb(var(--border));
+				border-radius: var(--radius);
+				outline: none;
+				transition: border-color 0.15s ease, box-shadow 0.15s ease;
+				box-sizing: border-box;
+			}
+
+			.form-group textarea {
+				resize: vertical;
+				min-height: 6em;
+				line-height: 1.5;
+			}
+
+			.form-group input::placeholder,
+			.form-group textarea::placeholder {
+				color: rgb(var(--text-faint));
+			}
+
+			.form-group input:focus,
+			.form-group textarea:focus {
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px var(--accent-muted);
+			}
+
+			.form-group input.error,
+			.form-group textarea.error {
+				border-color: #f85149;
+				box-shadow: 0 0 0 3px rgba(248, 81, 73, 0.15);
+			}
+
+			.char-count {
+				font-size: 0.75em;
+				color: rgb(var(--text-faint));
+				text-align: right;
+				margin-top: 0.3em;
+			}
+
+			.char-count.near-limit {
+				color: #d29922;
+			}
+
+			.char-count.at-limit {
+				color: #f85149;
+			}
+
+			.error-text {
+				color: #f85149;
+				font-size: 0.8em;
+				margin-top: 0.3em;
+				display: none;
+			}
+
+			.error-text.visible {
+				display: block;
+			}
+
+			.submit-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5em;
+				padding: 0.7em 2em;
+				font-size: 1rem;
+				font-family: inherit;
+				font-weight: 600;
+				color: #fff;
+				background: var(--accent);
+				border: none;
+				border-radius: var(--radius);
+				cursor: pointer;
+				transition: background 0.15s ease, transform 0.1s ease;
+				margin-top: 0.5em;
+			}
+
+			.submit-btn:hover:not(:disabled) {
+				background: var(--accent-hover);
+			}
+
+			.submit-btn:active:not(:disabled) {
+				transform: scale(0.98);
+			}
+
+			.submit-btn:disabled {
+				opacity: 0.6;
+				cursor: not-allowed;
+			}
+
+			.spinner {
+				width: 16px;
+				height: 16px;
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-top-color: #fff;
+				border-radius: 50%;
+				animation: spin 0.6s linear infinite;
+				display: none;
+			}
+
+			.submit-btn.loading .spinner {
+				display: block;
+			}
+
+			.submit-btn.loading .btn-text {
+				display: none;
+			}
+
+			@keyframes spin {
+				to { transform: rotate(360deg); }
+			}
+
+			.form-status {
+				padding: 1em 1.25em;
+				border-radius: var(--radius);
+				font-size: 0.9em;
+				margin-top: 1.5em;
+				display: none;
+			}
+
+			.form-status.success {
+				display: block;
+				background: rgba(35, 134, 54, 0.15);
+				border: 1px solid rgba(35, 134, 54, 0.4);
+				color: #3fb950;
+			}
+
+			.form-status.error {
+				display: block;
+				background: rgba(248, 81, 73, 0.1);
+				border: 1px solid rgba(248, 81, 73, 0.4);
+				color: #f85149;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="contact-section">
+				<h1>Get in Touch</h1>
+				<p class="subtitle">Need to see my resume, or just want to send me a message? Please fill out the form below, I will reply typically within 24 hours.</p>
+
+				<form id="contact-form" novalidate>
+					<div style="display:none;" aria-hidden="true">
+						<label for="website">Website</label>
+						<input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+					</div>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" placeholder="Your name" required />
+						<p class="error-text" id="name-error">Please enter your name.</p>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email Address</label>
+						<input type="email" id="email" name="email" placeholder="you@example.com" required />
+						<p class="error-text" id="email-error">Please enter a valid email address.</p>
+					</div>
+
+					<div class="form-group">
+						<label for="company">Company</label>
+						<input type="text" id="company" name="company" placeholder="Your company" />
+					</div>
+
+					<div class="form-group">
+						<label for="message">Message <span style="font-weight: 400; color: rgb(var(--text-faint));">(optional)</span></label>
+						<textarea id="message" name="message" placeholder="Anything you'd like to add..." maxlength="1000"></textarea>
+						<div class="char-count"><span id="message-count">0</span> / 1,000</div>
+					</div>
+
+					<button type="submit" class="submit-btn">
+						<span class="btn-text">Send</span>
+						<span class="spinner"></span>
+					</button>
+
+					<div class="form-status" id="form-status"></div>
+				</form>
+			</section>
+		</main>
+		<Footer />
+		<script>
+			const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbOzf6f8pCww3z3daMlJPPcSFGtjKkqR4OxNmDAYpy0V9OdfzcwGH5cLADCP5jx2x0/exec';
+
+			const form = document.getElementById('contact-form') as HTMLFormElement;
+			const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+			const statusEl = document.getElementById('form-status')!;
+
+			function validateEmail(email: string): boolean {
+				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+			}
+
+			function clearValidation() {
+				form.querySelectorAll('input.error').forEach(el => el.classList.remove('error'));
+				form.querySelectorAll('.error-text.visible').forEach(el => el.classList.remove('visible'));
+			}
+
+			function showFieldError(fieldId: string) {
+				const input = document.getElementById(fieldId) as HTMLInputElement;
+				const error = document.getElementById(`${fieldId}-error`)!;
+				input.classList.add('error');
+				error.classList.add('visible');
+			}
+
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				clearValidation();
+				statusEl.className = 'form-status';
+				statusEl.textContent = '';
+
+				const name = (document.getElementById('name') as HTMLInputElement).value.trim();
+				const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+				const company = (document.getElementById('company') as HTMLInputElement).value.trim();
+				const message = (document.getElementById('message') as HTMLTextAreaElement).value.trim();
+				const website = (document.getElementById('website') as HTMLInputElement).value;
+
+				let valid = true;
+				if (!name) { showFieldError('name'); valid = false; }
+				if (!email || !validateEmail(email)) { showFieldError('email'); valid = false; }
+				if (!valid) return;
+
+				submitBtn.classList.add('loading');
+				submitBtn.disabled = true;
+
+				try {
+					const params = new URLSearchParams({ name, email, company, message, website });
+					const res = await fetch(APPS_SCRIPT_URL, {
+						method: 'POST',
+						body: params,
+					});
+
+					if (!res.ok) throw new Error('Request failed');
+
+					statusEl.className = 'form-status success';
+					statusEl.textContent = 'Thanks for reaching out! I\'ll get back to you soon.';
+					form.reset();
+				} catch {
+					statusEl.className = 'form-status error';
+					statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
+				} finally {
+					submitBtn.classList.remove('loading');
+					submitBtn.disabled = false;
+				}
+			});
+
+			form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach(field => {
+				field.addEventListener('input', () => {
+					field.classList.remove('error');
+					const errorEl = document.getElementById(`${field.id}-error`);
+					if (errorEl) errorEl.classList.remove('visible');
+				});
+			});
+
+			const messageEl = document.getElementById('message') as HTMLTextAreaElement;
+			const countEl = document.getElementById('message-count')!;
+			const countWrapper = countEl.parentElement!;
+			const maxLen = 1000;
+
+			messageEl.addEventListener('input', () => {
+				const len = messageEl.value.length;
+				countEl.textContent = String(len);
+				countWrapper.classList.toggle('near-limit', len >= maxLen * 0.8 && len < maxLen);
+				countWrapper.classList.toggle('at-limit', len >= maxLen);
+			});
+		</script>
+	</body>
+</html>
