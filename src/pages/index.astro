@@ -189,7 +189,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				height: 100%;
 			}
 
-			.timeline-item:hover .timeline-marker {
+			.timeline-item:hover .timeline-marker,
+			.timeline-item.active .timeline-marker {
 				opacity: 1;
 				transform: scale(1.1);
 				box-shadow: 0 0 0 4px var(--bg), 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -208,7 +209,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				transition: background 0.25s ease;
 			}
 
-			.timeline-item:hover .timeline-card {
+			.timeline-item:hover .timeline-card,
+			.timeline-item.active .timeline-card {
 				background: var(--bg-elevated);
 			}
 
@@ -218,7 +220,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				text-align: right;
 			}
 
-			.timeline-item[data-side="left"]:hover .timeline-card {
+			.timeline-item[data-side="left"]:hover .timeline-card,
+			.timeline-item[data-side="left"].active .timeline-card {
 				text-align: left;
 			}
 
@@ -226,7 +229,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				justify-content: flex-end;
 			}
 
-			.timeline-item[data-side="left"]:hover .card-title {
+			.timeline-item[data-side="left"]:hover .card-title,
+			.timeline-item[data-side="left"].active .card-title {
 				justify-content: flex-start;
 			}
 
@@ -257,9 +261,12 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				gap: 0.25em;
 				overflow-wrap: break-word;
 				word-break: break-word;
+				cursor: pointer;
+				-webkit-tap-highlight-color: transparent;
 			}
 
-			.timeline-item:hover .card-title {
+			.timeline-item:hover .card-title,
+			.timeline-item.active .card-title {
 				opacity: 1;
 			}
 
@@ -279,7 +286,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				transition: opacity 0.25s ease, visibility 0.25s ease;
 			}
 
-			.timeline-item:hover .card-details {
+			.timeline-item:hover .card-details,
+			.timeline-item.active .card-details {
 				opacity: 1;
 				visibility: visible;
 				pointer-events: auto;
@@ -295,7 +303,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				white-space: nowrap;
 			}
 
-			.timeline-item:hover .card-date {
+			.timeline-item:hover .card-date,
+			.timeline-item.active .card-date {
 				display: inline;
 			}
 
@@ -384,7 +393,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				}
 
 				.timeline-item[data-side="left"] .card-title,
-				.timeline-item[data-side="left"]:hover .card-title {
+				.timeline-item[data-side="left"]:hover .card-title,
+				.timeline-item[data-side="left"].active .card-title {
 					justify-content: flex-start;
 				}
 			}
@@ -550,5 +560,32 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				}
 			})();
 		</script>
+	<script>
+		document.querySelectorAll<HTMLElement>('.card-title').forEach((title) => {
+			title.addEventListener('click', (e) => {
+				const item = title.closest('.timeline-item');
+				if (!item) return;
+
+				const wasActive = item.classList.contains('active');
+
+				document.querySelectorAll('.timeline-item.active').forEach((el) => {
+					el.classList.remove('active');
+				});
+
+				if (!wasActive) {
+					item.classList.add('active');
+				}
+			});
+		});
+
+		document.addEventListener('click', (e) => {
+			const target = e.target as HTMLElement;
+			if (!target.closest('.timeline-item')) {
+				document.querySelectorAll('.timeline-item.active').forEach((el) => {
+					el.classList.remove('active');
+				});
+			}
+		});
+	</script>
 	</body>
 </html>
