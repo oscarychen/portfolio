@@ -37,6 +37,23 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 				text-align: center;
 			}
 
+			.typewriter {
+				border-right: 2px solid transparent;
+				min-height: 1lh;
+				width: fit-content;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.typewriter.typing {
+				border-right-color: currentColor;
+				animation: blink-caret 0.6s step-end infinite;
+			}
+
+			@keyframes blink-caret {
+				50% { border-right-color: transparent; }
+			}
+
 			.hero-image {
 				flex-shrink: 0;
 				background: none;
@@ -374,8 +391,8 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 		<main class="home-main">
 			<section class="hero-section">
 				<div class="hero-text">
-					<h1>Hi, I am Oscar Chen</h1>
-					<p>I'm a software engineer based in Canada</p>
+					<h1 class="typewriter" data-typewriter="Hi, I am Oscar Chen"></h1>
+					<p class="typewriter" data-typewriter="I'm a software engineer"></p>
 				</div>
 				<div class="hero-image">
 					<img src={ProfileImage.src} alt="Oscar Chen" width={140} height={140} />
@@ -455,5 +472,38 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 			)}
 		</main>
 		<Footer />
+		<script>
+			function typewrite(el: HTMLElement, text: string, speed = 40): Promise<void> {
+				return new Promise((resolve) => {
+					el.classList.add('typing');
+					let i = 0;
+					const tick = () => {
+						el.textContent = text.slice(0, ++i);
+						if (i < text.length) {
+							setTimeout(tick, speed);
+						} else {
+							el.classList.remove('typing');
+							resolve();
+						}
+					};
+					tick();
+				});
+			}
+
+			const container = document.querySelector<HTMLElement>('.hero-text')!;
+			const elements = document.querySelectorAll<HTMLElement>('[data-typewriter]');
+
+			elements.forEach((el) => (el.textContent = el.dataset.typewriter!));
+			const fullWidth = container.offsetWidth;
+			elements.forEach((el) => (el.textContent = ''));
+			container.style.width = `${fullWidth}px`;
+
+			(async () => {
+				for (const el of elements) {
+					await typewrite(el, el.dataset.typewriter!, 55);
+					await new Promise((r) => setTimeout(r, 200));
+				}
+			})();
+		</script>
 	</body>
 </html>
