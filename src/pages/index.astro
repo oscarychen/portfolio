@@ -34,18 +34,22 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 
 			.hero-text {
 				min-width: 0;
-				text-align: center;
+				max-width: 100%;
+				text-align: left;
+				font-size: 0.85rem;
 			}
 
 			.typewriter {
 				min-height: 1lh;
 				width: fit-content;
-				margin-left: auto;
-				margin-right: auto;
+
 			}
 
 			h1.typewriter {
 				white-space: nowrap;
+			}
+			p.typewriter {
+				min-height: 2lh;
 			}
 
 			.typewriter.typing::after {
@@ -411,7 +415,7 @@ const markerColors = ['#f97316', '#38bdf8', '#22c55e', '#a855f7', '#ec4899'];
 			<section class="hero-section">
 				<div class="hero-text">
 					<h1 class="typewriter" data-typewriter="Hi, I am Oscar Chen"></h1>
-					<p class="typewriter" data-typewriter="I'm a software engineer" data-roles='["a programming nerd", "an engineer by day, raiser of little humans by night", "a clumsy DIY&apos;er", "my wife&apos;s favourite handyman", "an okish snowboarder", "a very out-of-breath runner", "an amateur 3D printing enthusiast", "an AI-assisted/brain-atrophied human (basically a cyborg)", "a professional diver into deep rabbit holes", "essentially a Jedi but with a ping-pong paddle", "basically a professional kickboxer with undefeated record against sandbags"]'></p>
+					<p class="typewriter" data-typewriter="I'm a software engineer" data-roles='["a programming nerd", "an engineer by day, raiser of little humans by night", "my wife&apos;s favourite handyman", "a snowboarder who is great at sitting", "an amateur 3D printing enthusiast", "an AI-assisted/brain-atrophied human (basically a cyborg)", "a professional diver into deep rabbit holes", "essentially a Jedi but with a ping-pong paddle", "a kickboxer with 100% win rate against sandbags"]'></p>
 				</div>
 				<div class="hero-image">
 					<img src={ProfileImage.src} alt="Oscar Chen" width={140} height={140} />
