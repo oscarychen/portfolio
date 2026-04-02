@@ -8,11 +8,11 @@ export interface Project {
   tags?: string[];
 }
 
-export const projects: Project[] = [
+export const projects: Project[] = [  
   {
     name: "PotatoRun",
     description: "Resource scheduling and reservation management system",
-    date: "2025-2026",
+    date: "2023-2026",
     image: "https://www.potatorun.com/potatorun1.svg",
     url: "https://potatorun.com",
     tags: ["resource scheduling", "time management"],
